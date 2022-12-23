@@ -1,7 +1,7 @@
 # Red Black Tree
 
 Ein Projekt das in dem Modul Grundlagen der Informatik 3 entwickelt wurde. <br/>
-<img src="https://martin-thoma.com/images/2012/07/red-black-tree1.png" width="500px"/>
+<img src="https://martin-thoma.com/images/2012/07/red-black-tree1.png" width="700px"/>
 
 ## Branchinfo
 
