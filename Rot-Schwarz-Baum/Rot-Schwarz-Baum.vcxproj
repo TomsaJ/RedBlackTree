@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="redblacktree.cpp" />
     <ClCompile Include="Rot-Schwarz-Baum.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="redblacktree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
