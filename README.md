@@ -6,6 +6,7 @@ Ein Projekt das in dem Modul Grundlagen der Informatik 3 entwickelt wurde. <br/>
 ## Branchinfo
 
 Branch: <br/>
+header -> Erstellen des Headers -> in Bearbeitung -> (noch nicht gemergt) <br/>
 
 ## Installation
 Da Programm wird in der main.cpp ausgefüht.
