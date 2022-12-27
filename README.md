@@ -5,8 +5,10 @@ Ein Projekt das in dem Modul Grundlagen der Informatik 3 entwickelt wurde. <br/>
 
 ## Branchinfo
 
-Branch: <br/>
-header -> Erstellen des Headers -> in Bearbeitung -> (noch nicht gemergt) <br/>
+| Branch                 | Beschreibung           | Bearbeitungsstatus        | Mergestatus                   | Mergedatum    | Zielbranch |
+|:---------------------- |:---------------------- | :------------------------:| :----------------------------:| :----------: | :------------- |
+|readme_update | Update von der README.md | in Bearbeitung | | | main |
+| header     | Erstellen des Headers   | In Bearbeitung | |  | main  |
 
 ## Installation
 Da Programm wird in der main.cpp ausgefüht.
