@@ -1,11 +1,8 @@
 #pragma once
-
 #include <iostream>
-
 
 template<typename T>
 class SearchTree;
-
 
 template<typename T>
 class TreeNode 
@@ -17,14 +14,10 @@ public:
 	TreeNode* left = nullptr;
 	TreeNode* right = nullptr;
 
-	
-	
 	enum Color {
 		RED,
 		BLACK
 	} color = BLACK;
-
-
 
 public:
 	const T key;
@@ -61,10 +54,8 @@ TreeNode* predecessor()
         else
         {
             throw 4;
-        }
-            
+        }       
     }
-
     TreeNode* minimum()
     {
         TreeNode* x = this;
@@ -161,7 +152,7 @@ public:
 	void rotateRight(Node* x);
 	void insert(const T key);
 	void insertFixup(Node* z);
-	// void deleteNode(Node *const node); // "const Node *const node" nicht zulaessig, da node sonst nicht korrekt geloescht werden koennte
+	// void deleteNode(Node *const node); // "const Node *const node" nicht zulaessig, node kann sonst nicht richtig geloescht werden 
 	Node* search(const T key);
 
 	// Node* minimum() { return root->minimum(); }
@@ -196,7 +187,6 @@ public:
 		std::cout << subTree->key << "\n";
 
 		printSubtree(subTree->right, depth + 1);
-
 		printSubtree(subTree->left, depth + 1);
 	}
 
