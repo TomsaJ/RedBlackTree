@@ -2,7 +2,7 @@
 //
 
 #include <iostream>
-#include "redblacktree.h"
+#include "redblacktree.hpp"
 
 int main(int argc, char** argv) {
 	{
