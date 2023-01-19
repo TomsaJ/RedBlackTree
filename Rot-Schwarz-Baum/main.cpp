@@ -1,5 +1,7 @@
 // Binarytree.cpp : Diese Datei enth�lt die Funktion "main". Hier beginnt und endet die Ausf�hrung des Programms.
 //
+#pragma warning(disable : 4244)
+#pragma warning(disable : 4101)
 
 #include <iostream>
 #include <ctime>
@@ -134,6 +136,8 @@ void insertRangeRandomNumber(int afrn)
 	{
 		maxnumber = max;
 	}
+	cout << "Alter Baum:" << endl;
+	tree.print();
 	clock_t start = clock();
 	for (int i = 0; i < afrn;)
 	{
@@ -145,6 +149,8 @@ void insertRangeRandomNumber(int afrn)
 		}
 	}
 	clock_t end = clock();
+	cout << "Neuer Baum" << endl;
+	tree.print();
 	double elapsed_time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000;
 	std::cout << "Benoetigte Zeit zum Loeschen des Baums: " << elapsed_time << "ms" << std::endl;
 	pause();
@@ -219,7 +225,6 @@ void deletetree()
 
 void start()
 {
-	cout << "Fuer die Test-Funktion gebe T ein " << endl;
 	cout << "Mit wie viele Knoten soll der Baum erstellt werden" << endl;
 	cin >> anzahl;
 	clear();
@@ -272,8 +277,10 @@ int main()
 		clear();
 		cout
 			<< "Binarysearchtree" << endl
-			<< "Tree:" << tree << endl
-			<< "1. Neue Zahl einfuegen" << endl
+			<< "Tree:" <<endl; 
+				tree.print();
+				cout << endl;
+			cout << "1. Neue Zahl einfuegen" << endl
 			<< "2. Zahl loeschen" << endl
 			<< "3. Zahl suchen" << endl
 			<< "4. Baum loeschen" << endl

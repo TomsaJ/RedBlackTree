@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 template <typename T>
 class RedBlackTree;
 
@@ -23,14 +25,8 @@ public:
 	// Destruktor
 	virtual ~TreeNode()
 	{
-		if (left != this)
-		{
-			delete left;
-		}
-		if (right != this)
-		{
-			delete right;
-		}
+		delete this->left;
+		delete this->right;
 	}
 
 	// Disallow (accidental) copying or moving:
@@ -88,7 +84,7 @@ TreeNode<T>* TreeNode<T>::successor()
 	return desc;
 }
 
-/*template <class T>
+template <class T>
 TreeNode<T> *TreeNode<T>::minimum()
 {
 	TreeNode *min = this;
@@ -104,7 +100,7 @@ TreeNode<T> *TreeNode<T>::maximum()
 	while (max->right != nullptr)
 		max = max->right;
 	return max;
-}*/
+}
 
 template <typename T>
 class RedBlackTree
@@ -113,19 +109,40 @@ class RedBlackTree
 
 private:
 	Node* root; // Wurzel (im Falle eines leeren Baumes: nullptr)
-	Node* nil;
+	Node* null;
+
+	
 
 public:
 	//SearchTree() : root(nullptr) {}
 	RedBlackTree();
 	virtual ~RedBlackTree() {
 		delete root;
-		delete nil;
+		delete null;
 	}
 
 	// Disallow (accidental) copying or moving:
 	RedBlackTree(const RedBlackTree& copyFrom) = delete;
 	RedBlackTree(RedBlackTree&& moveFrom) = delete;
+
+private:
+	void transplant(const Node* const nodeToReplace, Node* const replacementNode) // internally used by void delete_node(...)
+	{
+		if (nodeToReplace->parent == nullptr)
+		{
+			root = replacementNode;
+		}
+		else if (nodeToReplace == nodeToReplace->parent->left)
+		{
+			nodeToReplace->parent->left = replacementNode;
+		}
+		else
+		{
+			nodeToReplace->parent->right = replacementNode;
+		}
+		if (replacementNode != nullptr)
+			replacementNode->parent = nodeToReplace->parent;
+	}
 
 public:
 	void insert(const T key);
@@ -142,6 +159,32 @@ public:
 	void right_rotate(Node* node);
 
 
+	void deleteNode(Node* const node) // "const Node *const node" nicht zulaessig, da node sonst nicht korrekt geloescht werden koennte
+	{
+		if (node->left == nullptr)
+		{
+			transplant(node, node->right);
+		}
+		else if (node->right == nullptr)
+		{
+			transplant(node, node->left);
+		}
+		else
+		{
+			Node* y = node->right->minimum();
+
+			if (y->parent != node)
+			{
+				transplant(y, y->right);
+				y->right = node->right;
+				y->right->parent = y;
+			}
+			transplant(node, y);
+			y->left = node->left;
+			y->left->parent = y;
+		}
+	}
+
 private:
 	void printSubtree(Node* tree, int depth);
 
@@ -150,36 +193,45 @@ public:
 	friend std::ostream& operator<<(std::ostream& cout, const RedBlackTree& tree)
 	{
 		// cout << tree.root; // markiert rootNode nicht
-		cout << tree.root->left << "<" << tree.root->key << ">, " << tree.root->right; // markiert rootNode
+		if (tree.root != nullptr)
+		{
+			cout << tree.root->left << "<" << tree.root->key << ">, " << tree.root->right; // markiert rootNode
+			
+		}
+		else 
+		{
+			cout << "Tree is empty" << endl;
+		}
 		return cout;
 	}
+	
 };
 
 template <class T>
 RedBlackTree<T>::RedBlackTree() {
-	nil = new Node(0);
-	nil->parent = nullptr;
-	nil->right = nullptr;
-	nil->left = nullptr;
-	nil->black = true;
-	root = nil;
+	null = new Node(0);
+	null->parent = nullptr;
+	null->right = nullptr;
+	null->left = nullptr;
+	null->black = true;
+	root = null;
 }
 
 template <class T>
 void RedBlackTree<T>::left_rotate(Node* node)
 {
-	if (node->right == nil)
+	if (node->right == null)
 		throw "Fehler beim left rotate";
 
-	if (root->parent != nil)
+	if (root->parent != null)
 		throw "Fehler beim left rotate";
 
 	Node* y = node->right;
 	node->right = y->left;
-	if (y->left != nil)
+	if (y->left != null)
 		y->left->parent = node;
 	y->parent = node->parent;
-	if (node->parent == nil)
+	if (node->parent == null)
 		root = y;
 	else if (node == node->parent->left)
 		node->parent->left = y;
@@ -193,18 +245,18 @@ void RedBlackTree<T>::left_rotate(Node* node)
 template <class T>
 void RedBlackTree<T>::right_rotate(Node* node)
 {
-	if (node->left == nil)
+	if (node->left == null)
 		throw "Fehler beim right rotate";
 
-	if (root->parent != nil)
+	if (root->parent != null)
 		throw "Fehler beim right rotate";
 
 	Node* y = node->left;
 	node->left = y->right;
-	if (y->right != nil)
+	if (y->right != null)
 		y->right->parent = node;
 	y->parent = node->parent;
-	if (node->parent == nil)
+	if (node->parent == null)
 		root = y;
 	else if (node == node->parent->right)
 		node->parent->right = y;
@@ -217,15 +269,22 @@ void RedBlackTree<T>::right_rotate(Node* node)
 template <class T>
 void RedBlackTree<T>::print()
 {
-	std::cout << "-----------------------------------------\n";
-	printSubtree(root, 0);
-	std::cout << "-----------------------------------------\n";
+	if (root != nullptr)
+	{
+		std::cout << "-----------------------------------------\n";
+		printSubtree(root, 0);
+		std::cout << "-----------------------------------------\n";
+	}
+	else
+	{
+		cout << "Tree is empty" << endl;
+	}
 }
 
 template <class T>
 void RedBlackTree<T>::printSubtree(Node* tree, int depth)
 {
-	if (tree == nil)
+	if (tree == null)
 		return;
 
 	printSubtree(tree->right, depth + 1);
@@ -245,9 +304,9 @@ template <class T>
 void RedBlackTree<T>::insert(const T key)
 {
 	Node* z = new Node(key);
-	Node* y = nil;
+	Node* y = null;
 	Node* x = root;
-	while (x != nil)
+	while (x != null)
 	{
 		y = x;
 		if (z->key < x->key)
@@ -256,15 +315,15 @@ void RedBlackTree<T>::insert(const T key)
 			x = x->right;
 	}
 	z->parent = y;
-	if (y == nil)
+	if (y == null)
 		root = z;
 	else if (z->key < y->key)
 		y->left = z;
 	else
 		y->right = z;
 
-	z->left = nil;
-	z->right = nil;
+	z->left = null;
+	z->right = null;
 	z->black = false;
 	insert_fixup(z);
 }
@@ -272,7 +331,7 @@ void RedBlackTree<T>::insert(const T key)
 template <class T>
 void RedBlackTree<T>::insert_fixup(Node* z)
 {
-	Node* y = nil;
+	Node* y = null;
 	while (z->parent->black == false)
 	{
 		if (z->parent == z->parent->parent->left)
@@ -324,13 +383,13 @@ void RedBlackTree<T>::insert_fixup(Node* z)
 template <class T>
 TreeNode<T>* RedBlackTree<T>::search(const T key)
 {
-	return TreeNode<T>::search(root, key, nil);
+	return TreeNode<T>::search(root, key, null);
 }
 
 template <class T>
 TreeNode<T>* TreeNode<T>::search(TreeNode* root, const T key, TreeNode* nil)
 {
-	if (root == nil)
+	if (root == nullptr)
 		return nullptr;
 	if (key == root->key)
 		return root;
