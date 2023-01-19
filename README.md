@@ -7,10 +7,6 @@ Rot-Schwarz-Bäume sind eine spezielle Art von binären Suchbäumen, die verwend
 <img src="https://martin-thoma.com/images/2012/07/red-black-tree1.png" width="700px"/> <br/>
 Abbildung 1: Binärbaum [^4]
 
-## Installation
-Da Programm wird in der main.cpp ausgefüht.
-Es kann auf Windows so wie auf Linux und MacOs ausgeführt werden.
-
 ## Authors
 Laureen Roccotelli <br/>
 Hendrik Lange <br/>
