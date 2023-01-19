@@ -25,8 +25,10 @@ public:
 	// Destruktor
 	virtual ~TreeNode()
 	{
-		delete this->left;
-		delete this->right;
+		if (this->left != nullptr)
+			delete this->left;
+		if(this->right != nullptr)
+			delete this->right;
 	}
 
 	// Disallow (accidental) copying or moving:
@@ -186,7 +188,7 @@ public:
 	}
 
 private:
-	void printSubtree(Node* tree, int depth);
+	void printSubTree(Node* tree, int depth);
 
 public:
 	// optional, aber praktisch zum debuggen:
@@ -272,7 +274,7 @@ void RedBlackTree<T>::print()
 	if (root != nullptr)
 	{
 		std::cout << "-----------------------------------------\n";
-		printSubtree(root, 0);
+		printSubTree(root, 0);
 		std::cout << "-----------------------------------------\n";
 	}
 	else
@@ -282,22 +284,30 @@ void RedBlackTree<T>::print()
 }
 
 template <class T>
-void RedBlackTree<T>::printSubtree(Node* tree, int depth)
+void RedBlackTree<T>::printSubTree(Node* tree, int depth)
 {
 	if (tree == null)
 		return;
 
-	printSubtree(tree->right, depth + 1);
+	printSubTree(tree->right, depth + 1);
 
 	for (int i = 0; i < depth; i++)
 	{
 		std::cout << "     ";
 	}
-	std::cout << "[" << tree->key << (tree->black == true ? "B" : "R")
-		<< "]"
+	std::cout << "(" << tree->key;
+		if (tree->black == true)
+		{
+			cout << "Black";
+		}
+		else
+		{
+			cout << "Red";
+		}
+		cout << ")"
 		<< "\n";
 
-	printSubtree(tree->left, depth + 1);
+	printSubTree(tree->left, depth + 1);
 }
 
 template <class T>
@@ -306,7 +316,7 @@ void RedBlackTree<T>::insert(const T key)
 	Node* z = new Node(key);
 	Node* y = null;
 	Node* x = root;
-	while (x != null)
+	while (x != nullptr)
 	{
 		y = x;
 		if (z->key < x->key)
