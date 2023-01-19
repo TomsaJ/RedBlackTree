@@ -10,7 +10,7 @@ Abbildung 1: Binärbaum [^4]
 ## Authors
 Laureen Roccotelli <br/>
 Hendrik Lange <br/>
-Julian Maximilian Tomsa
+Julian Tomsa
 
 ## Literatur
 [^1]: "Introduction to Algorithms" von Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein
