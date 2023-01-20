@@ -73,7 +73,7 @@ void test()
 		elapsed_time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000;
 		cout << elapsed_time << " ms gedauert." << endl;
 
-		/*cout << "Benoetigte Zeit um den Baum zu loeschen: ";
+		cout << "Benoetigte Zeit um den Baum zu loeschen: ";
 		start = clock();
 		deleteTestTree();
 		end = clock();
