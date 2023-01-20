@@ -167,7 +167,7 @@ void RedBlackTree<T>::print()
 }
 
 /*
- * Method to output from the tree
+ * Method to output the tree
  * Works recursively
  */
 template <class T>
@@ -302,7 +302,7 @@ TreeNode<T>* RedBlackTree<T>::search(const T key)
 }
 
 /*
- * function of the TreeNode class gets the pointer to the node with the
+ * Function of the TreeNode class gets the pointer to the node with the
  * searched key value.
  * The function is passed a pointer to the root, the key value being searched for, and a 
  * pointer to nil.
