@@ -73,12 +73,6 @@ void test()
 		elapsed_time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000;
 		cout << elapsed_time << " ms gedauert." << endl;
 
-		cout << "Benoetigte Zeit um den Baum zu loeschen: ";
-		start = clock();
-		deleteTestTree();
-		end = clock();
-		elapsed_time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000;
-		cout << elapsed_time << " ms" << endl;
 		if (counter < 10000)
 		{
 			counter += 1000;
@@ -339,7 +333,7 @@ int main()
 			cout << "1. Neue Zahl einfuegen" << endl
 			<< "2. Zahl loeschen" << endl
 			<< "3. Zahl suchen" << endl
-			<< "4. Baum loeschen" << endl
+			//<< "4. Baum loeschen" << endl
 			<< "9. Beenden" << endl;
 		//cout<< "n. Neustart" << endl; //nur zum debuggen
 		cin >> input;
@@ -391,10 +385,10 @@ int main()
 			}
 			pause();
 			break;
-		case '4':
+		/*case '4':
 			deleteTree();
 			pause();
-			break;
+			break;*/
 		case '9':
 			cout << endl;
 			cout << "Erstellt von " << endl
