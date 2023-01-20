@@ -73,7 +73,7 @@ void test()
 		elapsed_time = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000;
 		cout << elapsed_time << " ms gedauert." << endl;
 
-		cout << "Benoetigte Zeit um den Baum zu loeschen: ";
+		/*cout << "Benoetigte Zeit um den Baum zu loeschen: ";
 		start = clock();
 		deleteTestTree();
 		end = clock();
@@ -196,13 +196,18 @@ void insertOwnNumber(int afon) //afon: anzahlforownnumber
 	{
 		maxnumber = afon;
 	}
-
+	tree.print();
 	for (int i = 0; i < afon; i++)
 	{
+		cout << "Alter Baum:" << endl;
+		tree.print();
 		cout << "Zahl eingeben" << endl;
 		cin >> number;
 		tree.insert(number);
+		cout << "Neuer Baum" << endl;
+		tree.print();
 	}
+	pause();
 }
  /*
  * The number to be deleted is deleted from the tree.
@@ -215,7 +220,7 @@ void deletenode()
 	if (tree.search(inputnumber) != nullptr)
 	{
 		cout << "Alter Tree:" << tree << endl;
-		tree.deleteNode(tree.search(inputnumber));
+		//tree.deleteNode(tree.search(inputnumber));
 		cout << "Neuer Tree:" << tree << endl;
 
 	}
@@ -238,7 +243,7 @@ void deleteTestTree()
 	{
 		while (tree.search(i))
 		{
-			tree.deleteNode(tree.search(i));
+			//tree.deleteNode(tree.search(i));
 		}
 	}
 	maxnumber = 0;
@@ -257,7 +262,7 @@ void deleteTree()
 	{
 		while (tree.search(i))
 		{
-			tree.deleteNode(tree.search(i));
+			//tree.deleteNode(tree.search(i));
 			count++;
 		}
 	}
