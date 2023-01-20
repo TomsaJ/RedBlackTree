@@ -331,8 +331,8 @@ int main()
 				tree.print();
 				cout << endl;
 			cout << "1. Neue Zahl einfuegen" << endl
-			<< "2. Zahl loeschen" << endl
-			<< "3. Zahl suchen" << endl
+			//<< "2. Zahl loeschen" << endl
+			<< "2. Zahl suchen" << endl
 			//<< "4. Baum loeschen" << endl
 			<< "9. Beenden" << endl;
 		//cout<< "n. Neustart" << endl; //nur zum debuggen
@@ -369,10 +369,10 @@ int main()
 
 			}
 			break;
-		case '2':
+		/*case '2':
 			deletenode();
-			break;
-		case '3':
+			break;*/
+		case '2':
 			cout << "Gesuchte Zahl:" << endl;
 			cin >> number;
 			if (tree.search(number) != nullptr)
