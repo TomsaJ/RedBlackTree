@@ -326,7 +326,7 @@ int main()
 	{
 		clear();
 		cout
-			<< "Binarysearchtree" << endl
+			<< "Red-Black-Tree" << endl
 			<< "Tree:" <<endl; 
 				tree.print();
 				cout << endl;
