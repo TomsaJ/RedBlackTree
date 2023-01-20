@@ -17,3 +17,6 @@ Julian Tomsa
 [^2]: "Algorithms in C++" von Robert Sedgewick
 [^3]: "Data Structures and Algorithm Analysis in C++" von Mark Allen Weiss
 [^4]: https://martin-thoma.com/images/2012/07/red-black-tree1.png
+=======
+Aktuelle README.md <br/>
+https://gitlab.com/gdi3_21/rs-tree/-/tree/readme_update/
