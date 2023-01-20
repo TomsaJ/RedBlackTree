@@ -392,7 +392,7 @@ int main()
 		case '9':
 			cout << endl;
 			cout << "Erstellt von " << endl
-				<< "Laureen Roccotelli, Hendrik Lange und Julian Tomsa" << endl;
+				<< "Laureen Roccotelli und Julian Tomsa" << endl;
 			break;
 			/*case 'n':
 				deletetree();
